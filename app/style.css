@@ -1,0 +1,158 @@
+@font-face {
+  font-family: 'Anton';
+  src: url('./fonts/Anton-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --night: #160423;
+  --card: #221033;
+  --edge: #462365;
+  --ink: #ffeede;
+  --dim: #cfa9d6;
+  --pink: #ff2e88;
+  --orange: #ff7a3d;
+  --aqua: #2de2c5;
+  --field: #0f0219;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(1100px 500px at 85% -10%, rgba(255, 46, 136, 0.22), transparent 60%),
+    radial-gradient(900px 480px at -10% 110%, rgba(255, 122, 61, 0.16), transparent 60%),
+    var(--night);
+  color: var(--ink);
+  font: 15px/1.55 system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+.shell {
+  display: grid;
+  grid-template-columns: 400px minmax(0, 1fr);
+  grid-template-areas: 'head head' 'panel preview';
+  column-gap: 28px;
+  max-width: 1580px;
+  margin: 0 auto;
+  padding: 0 26px 36px;
+}
+
+.masthead { grid-area: head; padding: 22px 0 6px; }
+.wordmark {
+  font-family: 'Anton', sans-serif;
+  font-size: 32px;
+  letter-spacing: 1.5px;
+  color: #fff;
+  text-transform: uppercase;
+}
+.wordmark-badge {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 2px 11px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--pink), var(--orange));
+  color: #fff;
+}
+.strapline { margin: 5px 0 0; color: var(--dim); max-width: 720px; }
+
+.panel { grid-area: panel; }
+.panel h2 {
+  font-family: 'Anton', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 1.2px;
+  margin: 24px 0 9px;
+  color: #fff;
+  text-transform: uppercase;
+}
+.panel h2 span { color: var(--aqua); }
+.note { margin: 0 0 11px; color: var(--dim); font-size: 13.5px; }
+
+.upload-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.upload {
+  display: block;
+  padding: 9px 11px;
+  border: 1px solid var(--edge);
+  border-radius: 9px;
+  background: var(--card);
+  font-size: 13px;
+}
+.upload input { display: block; width: 100%; margin-top: 5px; font-size: 12px; }
+
+.button-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 9px; }
+button {
+  padding: 8px 13px;
+  border: 1px solid var(--edge);
+  border-radius: 9px;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+button:hover { border-color: var(--pink); }
+button.on {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: #fff;
+  font-weight: 700;
+}
+
+.check { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 13.5px; }
+.check input { accent-color: var(--pink); width: 17px; height: 17px; }
+
+.text-field { display: block; margin-bottom: 11px; font-size: 13px; }
+.text-field input[type="text"] {
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  padding: 10px 11px;
+  border: 1px solid var(--edge);
+  border-radius: 9px;
+  background: var(--field);
+  color: var(--ink);
+  font: inherit;
+}
+.text-field input[type="range"] { display: block; width: 100%; accent-color: var(--pink); }
+
+.export-btn {
+  display: block;
+  width: 100%;
+  margin-top: 15px;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--pink), var(--orange));
+  color: #fff;
+  font-size: 18px;
+  font-weight: 800;
+}
+#statusLine { min-height: 1.5em; color: var(--aqua); }
+
+.preview { grid-area: preview; padding-top: 24px; min-width: 0; }
+#poster {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  background: #000;
+  cursor: crosshair;
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.55);
+}
+.preview-note { color: var(--dim); font-size: 13px; text-align: center; }
+
+/* Screenshot mode: the cover alone, edge to edge, no editor chrome. */
+body.shot-cover { background: #000; }
+body.shot-cover .shell {
+  display: block;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+body.shot-cover .masthead,
+body.shot-cover .panel,
+body.shot-cover .preview-note { display: none; }
+body.shot-cover .preview { padding: 0; }
+body.shot-cover #poster { border-radius: 0; box-shadow: none; }
