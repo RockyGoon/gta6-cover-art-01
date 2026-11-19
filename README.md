@@ -1,8 +1,8 @@
 # Leonida After Dark — GTA VI Cover Studio
 
 [![make.fun](https://make.fun/badge/gta6-cover-art-01.svg)](https://make.fun/bounty/gta6-cover-art-01)
-[![rank](https://make.fun/badge/gta6-cover-art-01/RockyGoon/gta6-cover-art-01-r2/rank.svg)](https://make.fun/bounty/gta6-cover-art-01)
-[![reward](https://make.fun/badge/gta6-cover-art-01/RockyGoon/gta6-cover-art-01-r2/reward.svg)](https://make.fun/bounty/gta6-cover-art-01)
+[![rank](https://make.fun/badge/gta6-cover-art-01/RockyGoon/gta6-cover-art-01/rank.svg)](https://make.fun/bounty/gta6-cover-art-01)
+[![reward](https://make.fun/badge/gta6-cover-art-01/RockyGoon/gta6-cover-art-01/reward.svg)](https://make.fun/bounty/gta6-cover-art-01)
 
 A web app that turns your own photos and a caption into GTA VI-style cover art —
 the multi-panel Vice City poster look with bold Anton lettering and a sunset or
