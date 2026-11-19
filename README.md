@@ -4,48 +4,56 @@
 [![rank](https://make.fun/badge/gta6-cover-art-01/RockyGoon/gta6-cover-art-01/rank.svg)](https://make.fun/bounty/gta6-cover-art-01)
 [![reward](https://make.fun/badge/gta6-cover-art-01/RockyGoon/gta6-cover-art-01/reward.svg)](https://make.fun/bounty/gta6-cover-art-01)
 
-A web app that turns your own photos and a caption into GTA VI-style cover art —
-the multi-panel Vice City poster look with bold Anton lettering and a sunset or
-neon colour grade — exported as a PNG to share.
+Turn your own photos into a GTA VI-style poster: the multi-panel Vice City
+look, bold Anton lettering, a sunset or neon grade — exported as a PNG ready
+to post. No account, no upload, no build step.
 
 **Bounty:** [Make GTA 6 Cover Art — make.fun/bounty/gta6-cover-art-01](https://make.fun/bounty/gta6-cover-art-01)
 
-## What it does
+## Make a cover in four steps
 
-- **Six photo slots** — upload your own photos from your machine, or use the four
-  built-in sample photos (marina sunset, neon boulevard, Keys bridge, motel skyline).
-  Photos are read locally and never uploaded.
-- **Six layouts** — Hero, Duo, Grid 2×2, Grid 3×2, Strip ×3, Mosaic.
-- **Six grades** — Sunset, Neon Night, Golden Dusk, Vice Pink, Heatwave, Palm Noir.
-- **Editable caption** — title in Anton, subtitle, and a pill badge, with three title
-  styles: Gradient, Outline, Neon Script.
-- **Per-panel crop & pan** — zoom and position each panel's photo.
-- **Polish** — film grain and a white poster frame, toggleable.
-- **Export PNG** — 1080 × 1080, 1080 × 1350 and 1920 × 1080, offline.
+1. **Run it** — `node serve.ts`, then open http://localhost:8080.
+2. **Drop in photos** — six slots, your files or the four built-in samples
+   (marina sunset, neon boulevard, Keys bridge, motel skyline). Photos are
+   read on your machine and never leave it.
+3. **Pick a look** — a layout, a grade, a caption. The preview updates live.
+4. **Export** — one click saves the PNG at 1080 × 1080, 1080 × 1350 or
+   1920 × 1080.
 
-## Run it
+The preview and the export are drawn by the same code (`app/src/render.js`),
+so the PNG you save is exactly the cover you saw.
 
-```sh
-node serve.ts
-# open http://localhost:8080
-```
+## The studio
 
-Pick photos, a layout and a grade, edit the caption, then export. The live preview
-and the exported PNG are drawn by the same code (`app/src/render.js`), so what you
-see is what you share.
+| Piece | What you get |
+| --- | --- |
+| **Layouts — 7** | Hero, Duo, Grid 2×2, Grid 3×2, Strip ×3, Mosaic, and **Spotlight** — one big hero panel with three stacked moments beside it |
+| **Grades — 6** | Sunset, Neon Night, Golden Dusk, Vice Pink, Heatwave, Palm Noir |
+| **Caption** | Editable title in Anton, subtitle, and pill badge; three title styles — Gradient, Outline, Neon Script |
+| **Per-panel crop** | Zoom and pan each panel's photo until the framing is right |
+| **Finish** | Film grain and a white poster frame, both toggleable |
 
-## Facts baked in
+## Why it looks right
+
+- **One grade, every panel.** A colour wash runs over each photo and a sky
+  gradient over the whole poster, so six different photos feel like one
+  shoot at golden hour on Ocean Drive.
+- **Lettering with weight.** The title is set in Anton, fitted to the
+  poster width, with a dark scrim behind it so it reads over any photo.
+- **Offline by design.** Static files under `app/` — no network request,
+  no tracking, no server. It works the same from any static host.
+
+## About the game
 
 GTA VI releases 19 Nov 2026 on PlayStation 5 and Xbox Series X|S, starring
 Lucia Caminos and Jason Duval in Vice City, Leonida.
 
-## Originality
+## Originality & license
 
-Everything here is original: no Rockstar Games logo, wordmark, artwork or font.
-The title font is Anton under the SIL Open Font License (`app/fonts/OFL.txt`);
-the sample photos were generated with an image model for this entry.
-
-## License
+Everything here is original work: no Rockstar Games logo, wordmark, artwork
+or font. The title font is Anton under the SIL Open Font License
+(`app/fonts/OFL.txt`); the sample photos were generated with an image model
+for this entry.
 
 MIT — see [LICENSE](LICENSE).
 

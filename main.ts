@@ -4,7 +4,9 @@
 // font and four sample photos under app/, no network request). The program hands it in:
 // it copies app/ and screenshots/ from beside this file to /output and writes
 // /output/dossier.json, the summary the judge reads, with the vendored make.fun library.
-// The app itself: six photo slots, six multi-panel layouts, six Vice City colour grades,
+// The app itself: six photo slots, seven multi-panel layouts (Hero, Duo,
+// Grid 2x2, Grid 3x2, Strip x3, Mosaic, and Spotlight, the round-3 addition:
+// one big hero panel left, three stacked moments right), six Vice City colour grades,
 // editable Anton title with gradient / outline / neon-script styles, per-panel crop and
 // pan, film grain and a white poster frame, PNG export at 1080x1080, 1080x1350, 1920x1080.
 // Serve it locally with `node serve.ts`, then open http://localhost:8080.
@@ -28,7 +30,12 @@ if (!existsSync(join(here, 'screenshots'))) {
 }
 // Guard: a screenshot over the scorer's 256 KiB cap would fail the whole entry,
 // so refuse it here with the file's name instead of handing in a doomed dossier.
-for (const name of readdirSync(join(here, 'screenshots')).filter((n) => !n.startsWith('.'))) {
+// The gate also requires 3 to 4 screenshots, so refuse a wrong count the same way.
+const shotNames = readdirSync(join(here, 'screenshots')).filter((n) => !n.startsWith('.'));
+if (shotNames.length < 3 || shotNames.length > 4) {
+  throw new Error(`main.ts: screenshots/ holds ${shotNames.length} files, the gate requires 3 to 4`);
+}
+for (const name of shotNames) {
   const bytes = statSync(join(here, 'screenshots', name)).size;
   if (bytes > 262144) throw new Error(`main.ts: screenshots/${name} is ${bytes} bytes, over the 256 KiB cap`);
 }
