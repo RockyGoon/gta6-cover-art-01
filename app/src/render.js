@@ -19,6 +19,7 @@ export const LAYOUTS = [
   { id: 'grid3', name: 'Grid 3x2', panels: 6 },
   { id: 'strip3', name: 'Strip x3', panels: 3 },
   { id: 'mosaic', name: 'Mosaic', panels: 4 },
+  { id: 'spotlight', name: 'Spotlight', panels: 4 },
 ];
 
 export const SIZES = [
@@ -47,6 +48,14 @@ export function layoutRects(layoutId) {
     case 'mosaic': return [
       { x: 0, y: 0, w: 1, h: 0.58 },
       { x: 0, y: 0.58, w: 1 / 3, h: 0.42 }, { x: 1 / 3, y: 0.58, w: 1 / 3, h: 0.42 }, { x: 2 / 3, y: 0.58, w: 1 / 3, h: 0.42 },
+    ];
+    // Spotlight (round 3): one big hero panel on the left, three stacked
+    // moments on the right — the poster's face plus its supporting shots.
+    case 'spotlight': return [
+      { x: 0, y: 0, w: 2 / 3, h: 1 },
+      { x: 2 / 3, y: 0, w: 1 / 3, h: 1 / 3 },
+      { x: 2 / 3, y: 1 / 3, w: 1 / 3, h: 1 / 3 },
+      { x: 2 / 3, y: 2 / 3, w: 1 / 3, h: 1 / 3 },
     ];
     default: return [{ x: 0, y: 0, w: 1, h: 1 }];
   }
