@@ -3,87 +3,54 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vice City Cover Lab — GTA 6-style cover art maker</title>
+<title>Leonida After Dark — GTA VI Cover Studio</title>
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-<div class="shell">
-  <header class="masthead">
-    <div class="wordmark"><span class="wordmark-badge">VC</span> Vice City Cover Lab</div>
-    <p class="strapline">Drop in a photo, write a caption, and walk away with a Vice City sunset cover — as a PNG, with nothing uploaded.</p>
-  </header>
+<main class="app">
+  <section class="controls" aria-label="Cover editor controls">
+    <h1>Leonida After Dark</h1>
+    <p class="tagline">GTA VI-style cover art · Vice City, Leonida · Lucia &amp; Jason · 19 Nov 2026</p>
 
-  <aside class="panel" aria-label="Cover settings">
-    <h2>1 · Your photos</h2>
-    <p class="note">Four slots. Load your own, or tap a built-in Vice City sample. Click a panel in the preview to pick it, then drag the photo inside it.</p>
-    <div class="upload-grid" id="uploads">
-      <label class="upload">Photo 1 <input id="slot0" type="file" accept="image/*"></label>
-      <label class="upload">Photo 2 <input id="slot1" type="file" accept="image/*"></label>
-      <label class="upload">Photo 3 <input id="slot2" type="file" accept="image/*"></label>
-      <label class="upload">Photo 4 <input id="slot3" type="file" accept="image/*"></label>
-    </div>
-    <div class="button-row">
-      <button type="button" data-sample="boulevard">Neon Blvd</button>
-      <button type="button" data-sample="beach">Sunset Beach</button>
-      <button type="button" data-sample="keys">Keys Drive</button>
-      <button type="button" data-sample="skyline">Neon Skyline</button>
-    </div>
-    <div class="button-row">
-      <button type="button" id="fillOne">Fill every panel with Photo 1</button>
-      <button type="button" id="shuffle">Shuffle samples</button>
-    </div>
+    <h2>1 · Photos — six slots</h2>
+    <div id="slots"></div>
+    <button id="shuffle" type="button" class="wide">Shuffle samples across panels</button>
 
-    <h2>2 · Layout</h2>
-    <div class="button-row" id="layoutRow">
-      <button type="button" data-layout="hero">Hero</button>
-      <button type="button" data-layout="duo">Duo</button>
-      <button type="button" data-layout="grid" class="on">Grid 2×2</button>
-      <button type="button" data-layout="strip">Strip ×3</button>
-    </div>
+    <h2>2 · Layout — six ways</h2>
+    <div id="layouts" class="chips"></div>
 
-    <h2>3 · Colour grade</h2>
-    <div class="button-row" id="gradeRow">
-      <button type="button" data-grade="sunset" class="on">Sunset</button>
-      <button type="button" data-grade="neon">Neon Night</button>
-      <button type="button" data-grade="dusk">Golden Dusk</button>
-      <button type="button" data-grade="vice">Vice Pink</button>
-    </div>
-    <label class="check"><input id="grain" type="checkbox" checked> Film grain on the cover</label>
+    <h2>3 · Grade — six Vice City grades</h2>
+    <div id="grades" class="chips"></div>
 
     <h2>4 · Caption</h2>
-    <label class="text-field">Title
-      <input id="titleText" type="text" maxlength="28" value="VICE CITY">
-    </label>
-    <label class="text-field">Sub-caption
-      <input id="subText" type="text" maxlength="48" value="TWO OUTLAWS. ONE SUNSET CITY.">
-    </label>
-    <label class="text-field">Place pill
-      <input id="pillText" type="text" maxlength="24" value="VICE CITY, USA">
-    </label>
+    <label>Title <input id="title" type="text" maxlength="30" value="LEONIDA AFTER DARK"></label>
+    <label>Subtitle <input id="subtitle" type="text" maxlength="60" value="Lucia &amp; Jason · Vice City · 19 Nov 2026"></label>
+    <label>Pill <input id="pill" type="text" maxlength="12" value="GTA VI"></label>
+    <div id="title-styles" class="chips"></div>
 
-    <h2>5 · Selected panel <span id="panelLabel">1</span></h2>
-    <label class="text-field">Zoom <input id="zoomRange" type="range" min="1" max="2.5" step="0.01" value="1"></label>
-    <label class="text-field">Pan left–right <input id="panXRange" type="range" min="-0.4" max="0.4" step="0.01" value="0"></label>
-    <label class="text-field">Pan up–down <input id="panYRange" type="range" min="-0.4" max="0.4" step="0.01" value="0"></label>
-    <div class="button-row">
-      <button type="button" id="swapPhoto">Swap this panel's photo</button>
+    <h2>5 · Panel crop</h2>
+    <p id="panel-label" class="hint">Panel 1 — crop &amp; position</p>
+    <label>Zoom <input id="zoom" type="range" min="1" max="2.5" step="0.05" value="1"></label>
+    <label>Pan left–right <input id="pan-x" type="range" min="-1" max="1" step="0.05" value="0"></label>
+    <label>Pan up–down <input id="pan-y" type="range" min="-1" max="1" step="0.05" value="0"></label>
+
+    <h2>6 · Finish</h2>
+    <label class="check"><input id="grain" type="checkbox" checked> Film grain</label>
+    <label class="check"><input id="frame" type="checkbox" checked> White poster frame</label>
+    <div id="sizes" class="chips"></div>
+    <div class="exports">
+      <button type="button" data-export="square">Export 1080 × 1080</button>
+      <button type="button" data-export="portrait">Export 1080 × 1350</button>
+      <button type="button" data-export="wide">Export 1920 × 1080</button>
     </div>
-
-    <h2>6 · Size &amp; export</h2>
-    <div class="button-row" id="sizeRow">
-      <button type="button" data-size="1080x1080">1080 × 1080</button>
-      <button type="button" data-size="1080x1350">1080 × 1350</button>
-      <button type="button" data-size="1920x1080" class="on">1920 × 1080</button>
-    </div>
-    <button id="exportBtn" type="button" class="export-btn">Export PNG</button>
-    <p id="statusLine" role="status"></p>
-  </aside>
-
-  <section class="preview" aria-label="Cover preview">
-    <canvas id="poster" width="1920" height="1080" aria-label="The cover preview"></canvas>
-    <p class="preview-note">Click a panel to select it · drag inside a panel to move its photo · double-click a panel to swap its photo</p>
+    <p id="status" role="status"></p>
+    <p class="fine">Original fan-made cover tool. No Rockstar logo, artwork or font.
+    Photos stay on your machine — nothing is uploaded. Anton is under the SIL Open Font License.</p>
   </section>
-</div>
+  <section class="preview" aria-label="Live cover preview">
+    <canvas id="cover" width="1920" height="1080" aria-label="The cover"></canvas>
+  </section>
+</main>
 <script type="module" src="./src/editor.js"></script>
 </body>
 </html>
